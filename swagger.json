@@ -1,0 +1,1637 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GestionAutorizaciones.API",
+    "description": "Environment: Qa",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/autorizaciones/asegurado/{numeroPlastico}": {
+      "get": {
+        "tags": [
+          "Asegurado"
+        ],
+        "summary": "Validar y obtener información de asegurado por número de plástico.",
+        "parameters": [
+          {
+            "name": "numeroPlastico",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "esTokenVirtual",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObtenerInformacionAseguradoResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObtenerInformacionAseguradoResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObtenerInformacionAseguradoResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenGeneratedDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenGeneratedDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenGeneratedDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Refrescar token",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenGeneratedDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenGeneratedDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenGeneratedDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/autorizaciones": {
+      "get": {
+        "tags": [
+          "Autorizaciones"
+        ],
+        "summary": "Obtener listado de autorizaciones.",
+        "parameters": [
+          {
+            "name": "TipoPss",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoPss",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "FechaInicio",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "FechaFin",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "Ramo",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Secuencial",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "UsuarioIngreso",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NumeroPlastico",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "TamanoPagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/autorizaciones/{numeroAutorizacion}": {
+      "get": {
+        "tags": [
+          "Autorizaciones"
+        ],
+        "summary": "Obtener detalle de una autorización.",
+        "parameters": [
+          {
+            "name": "numeroAutorizacion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/autorizaciones/{numeroAutorizacion}/cancelacion": {
+      "post": {
+        "tags": [
+          "Autorizaciones"
+        ],
+        "summary": "Cancelar una autorización.",
+        "parameters": [
+          {
+            "name": "numeroAutorizacion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numeroPlastico",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/autorizaciones/conciliacion": {
+      "post": {
+        "tags": [
+          "Autorizaciones"
+        ],
+        "summary": "Conciliar autorizaciones.",
+        "parameters": [
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConciliarAutorizacionCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConciliarAutorizacionCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConciliarAutorizacionCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/autorizaciones/comparacion": {
+      "post": {
+        "tags": [
+          "Autorizaciones"
+        ],
+        "summary": "Comparar autorizaciones.",
+        "parameters": [
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Autorizacion"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Autorizacion"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Autorizacion"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/precertificaciones/{numeroPrecertificacion}/confirmacion": {
+      "post": {
+        "tags": [
+          "Precertificaciones"
+        ],
+        "summary": "Confirmar una Pre-Certificación.",
+        "parameters": [
+          {
+            "name": "numeroPrecertificacion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "compania",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/precertificaciones/{numeroPrecertificacion}": {
+      "get": {
+        "tags": [
+          "Precertificaciones"
+        ],
+        "summary": "Obtener detalle de una Pre-Certificación.",
+        "parameters": [
+          {
+            "name": "numeroPrecertificacion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "compania",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/prestador": {
+      "get": {
+        "tags": [
+          "Prestador"
+        ],
+        "summary": "Obtener información de un Prestador.",
+        "parameters": [
+          {
+            "name": "tipoPss",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigoPss",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidarPssResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidarPssResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidarPssResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/prestador/cobertura/validacion": {
+      "get": {
+        "tags": [
+          "Prestador"
+        ],
+        "summary": "Validar si el prestador puede ofrecer el tipo de cobertura.",
+        "parameters": [
+          {
+            "name": "tipoPss",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigoPss",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tipoCobertura",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidarPssResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidarPssResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidarPssResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/prestador/procedimientos": {
+      "get": {
+        "tags": [
+          "Prestador"
+        ],
+        "summary": "Obtener procedimientos permitidos de un Prestador.",
+        "parameters": [
+          {
+            "name": "TipoPss",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CodigoPss",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "TamanoPagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObtenerProcedimientosPermitidosResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObtenerProcedimientosPermitidosResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObtenerProcedimientosPermitidosResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/procedimientos": {
+      "post": {
+        "tags": [
+          "Procedimientos"
+        ],
+        "summary": "Insertar procedimiento.",
+        "parameters": [
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertarProcedimientoCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertarProcedimientoCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertarProcedimientoCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/procedimientos/validacion": {
+      "post": {
+        "tags": [
+          "Procedimientos"
+        ],
+        "summary": "Validar procedimiento.",
+        "parameters": [
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidarProcedimientoCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidarProcedimientoCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidarProcedimientoCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/procedimientos/{codigoProcedimiento}": {
+      "delete": {
+        "tags": [
+          "Procedimientos"
+        ],
+        "summary": "Cancelar/eliminar un procedimiento.",
+        "parameters": [
+          {
+            "name": "codigoProcedimiento",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/sesion/inicio": {
+      "post": {
+        "tags": [
+          "Sesion"
+        ],
+        "summary": "Inicio de sesión.",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IniciarSesionCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IniciarSesionCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IniciarSesionCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IniciarSesionResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IniciarSesionResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IniciarSesionResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/sesion/cierre": {
+      "post": {
+        "tags": [
+          "Sesion"
+        ],
+        "summary": "Cierre de sesión.",
+        "parameters": [
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CerrarSesionCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CerrarSesionCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CerrarSesionCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/autorizaciones/sesion/reinicio": {
+      "post": {
+        "tags": [
+          "Sesion"
+        ],
+        "summary": "Reactivar sesión.",
+        "parameters": [
+          {
+            "name": "x-numero-sesion",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "ClientId",
+            "required": true
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "ApiKey",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Acompanante": {
+        "type": "object",
+        "properties": {
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombres": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellidos": {
+            "type": "string",
+            "nullable": true
+          },
+          "genero": {
+            "type": "string",
+            "nullable": true
+          },
+          "poliza": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AfiliadoDTO": {
+        "type": "object",
+        "properties": {
+          "numeroPlastico": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "nombres": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellidos": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaNacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "genero": {
+            "type": "string",
+            "nullable": true
+          },
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "nss": {
+            "type": "string",
+            "nullable": true
+          },
+          "plan": {
+            "type": "string",
+            "nullable": true
+          },
+          "soloPbs": {
+            "type": "boolean"
+          },
+          "vigente": {
+            "type": "boolean"
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "acompanantes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Acompanante"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Autorizacion": {
+        "type": "object",
+        "properties": {
+          "fecha": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ano": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "compania": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ramo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "secuencial": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "numeroPlastico": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "montoReclamado": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "montoARS": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "montoAseg": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CerrarSesionCommand": {
+        "type": "object",
+        "properties": {
+          "preAutorizar": {
+            "type": "boolean"
+          },
+          "esARL": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Compania": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConciliarAutorizacionCommand": {
+        "type": "object",
+        "properties": {
+          "fechaInicio": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaFin": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalReclamado": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "totalARS": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "totalAsegurado": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "detalle": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleAutorizacion"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DetalleAutorizacion": {
+        "type": "object",
+        "properties": {
+          "fecha": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ano": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "compania": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ramo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "secuencial": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "numeroPlastico": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "montoReclamado": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "montoARS": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "montoAseg": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IniciarSesionCommand": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pin": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IniciarSesionResponseDto": {
+        "type": "object",
+        "properties": {
+          "numeroSesion": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsertarProcedimientoCommand": {
+        "type": "object",
+        "properties": {
+          "frecuencia": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginCommand": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObtenerInformacionAseguradoResponseDto": {
+        "type": "object",
+        "properties": {
+          "compania": {
+            "$ref": "#/components/schemas/Compania"
+          },
+          "afiliado": {
+            "$ref": "#/components/schemas/AfiliadoDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObtenerProcedimientosPermitidosResponseDto": {
+        "type": "object",
+        "properties": {
+          "procedimientos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProcedimientoDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrestadorDTO": {
+        "type": "object",
+        "properties": {
+          "tipoPss": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "rnc": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoEstado": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "descripcionEstado": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaIngreso": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fechaSalida": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "esARS": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProcedimientoDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "servicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoServicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "cobertura": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "nombreCobertura": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshTokenCommand": {
+        "type": "object",
+        "properties": {
+          "expiredToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenGeneratedDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidarProcedimientoCommand": {
+        "type": "object",
+        "properties": {
+          "codigoProcedimiento": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "tipoServicio": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "monto": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "frecuencia": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidarPssResponseDto": {
+        "type": "object",
+        "properties": {
+          "prestador": {
+            "$ref": "#/components/schemas/PrestadorDTO"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "API utiliza Bearer token",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
